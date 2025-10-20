@@ -1,23 +1,29 @@
 import requests
+import sys
 
 """
 Takes a url and determines whether path exists or does not exist
   returns 0 = nothing // 404
-          1 = for directory // 301
+          1 = for subdirectory // 301
           2 = for valid endpoint // 200
 """
 
 def checkPath(endpoint: str) -> int:
   """converts endpoint to an int based on its status code"""
   
-  httpGet = requests.get(f'{endpoint}') # gets the URL from the endpoint string
+  httpGet = requests.get(f'http://{endpoint}') 
 
-  match httpGet.status_code: # gets status code
-    case (404 | 400): # if not present
+  match httpGet.status_code: 
+    # Nothing
+    case (404 | 400):
       return 0
-    case 301: # if directory
+    # subdirectory
+    case 301:
       return 1
-    case 200: # if found
+    # valid endpoint
+    case 200:
       return 2
+    # code not implemented
     case _:
-      raise NotImplemented
+      sys.stderr.write(f"{endpoint} responded with code {httpGet.status_code} - ignored")
+      return 0
