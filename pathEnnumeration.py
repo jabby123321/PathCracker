@@ -11,8 +11,8 @@ def ennumerateURL(wordlist, url: str) -> List[str]:
       case 0:
         continue
       case 1:
-        foundWords.extend(ennumerateURL({url}/{word}))
+        foundWords.extend(ennumerateURL(wordlist, f"{url}/{word}"))
       case 2:
         foundWords.append(f"{url}/{word}")
-
-
+  
+  return foundWords

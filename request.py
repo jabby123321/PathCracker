@@ -19,4 +19,5 @@ def checkPath(endpoint: str) -> int:
       return 1
     case 200: # if found
       return 2
-
+    case _:
+      raise NotImplemented
