@@ -13,7 +13,7 @@ def checkPath(endpoint: str) -> int:
   httpGet = requests.get(f'{endpoint}') # gets the URL from the endpoint string
 
   match httpGet.status_code: # gets status code
-    case 404: # if not present
+    case (404 | 400): # if not present
       return 0
     case 301: # if directory
       return 1
