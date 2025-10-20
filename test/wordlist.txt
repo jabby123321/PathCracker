@@ -1,0 +1,7 @@
+admin
+foo
+bar.txt
+baz
+login.html
+main.html
+ham.txt
